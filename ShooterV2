@@ -1,0 +1,54 @@
+import pygame, sys
+from pygame.locals import QUIT
+
+#Global Setup
+pygame.init()
+WINDOW_WIDTH,WINDOW_HEIGHT = 1280,720
+display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption('Asteroid Shooter')
+
+#Ship
+ship_surf = pygame.image.load('../sprites/Ship.png')
+ship_rect = ship_surf.get_rect(center = (WINDOW_WIDTH/2,WINDOW_HEIGHT/2))
+
+#BG
+bg_surf = pygame.image.load("../sprites/Stage.jpg")
+
+#Laser
+laser_surf = pygame.image.load('..sprites/betalaser.png')
+
+clock = pygame.time.Clock()
+
+#Declare Variables
+
+#Game Loop
+while True:
+    #Close Game Event
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+            
+    clock.tick(200)
+            
+    #Section 1 - Sprites & Surfaces
+            #Background, Player, Incoming Objects, Projectiles, Text
+    display_surface.fill((0,0,0))
+    display_surface.blit(bg_surf,(0,0))
+    #ship_surf.fill((200,200,200))
+    display_surface.blit(ship_surf,ship_rect)
+    display_surface.blit(laser_surf,(0,0))
+            
+    #Section 2 - Controls & Inputs
+                    #Movement (Mouse), Projectiles (Buttons)
+    ship_rect.center = pygame.mouse.get_pos()
+
+
+    #Mouse Input
+            
+    #Section 3 - Game Logic, Interactions & Updates
+                    #Mandatory: Movement Code For Player, List of Enemies, Iteration, Collisions
+                    #Extra: Score, Lives, Splitting?, Audio
+
+    #Final Visual Update For User
+    pygame.display.update()
